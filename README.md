@@ -1,4 +1,4 @@
-Display SIM card PLMN / FPLMN on Pod Group Steering List application
+Display SIM card PLMN / FPLMN on your browser
 =====================================
 
 [simplmn](https://github.com/PodgroupConnectivity/sim-steering-plmn-reader) - is a small executable that reads the SIM Card EF_PLMN and EF_FPLMN files and display the defined steering list graphically on Pod Group Steering List application.
