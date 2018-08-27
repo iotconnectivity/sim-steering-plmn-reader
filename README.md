@@ -39,6 +39,7 @@ Then, ensure the following dependencies are already installed in your system:
 
 * [Python](http://python.org) 
 * [SWIG](http://www.swig.org)
+* [GIT](https://git-scm.com/)
 
 Once all dependencies are installed, download the source code and execute:
 

@@ -15,7 +15,7 @@ setup(name='simplmn',
           'asterix==0.3',
       ],
       dependency_links=[
-          'git+ssh://git@github.com/PodgroupConnectivity/asterix.git@384068582c7d5dc28da3fc7fd2dfc3c908f1ff0b#egg=asterix-0.3'
+          'git+https://git@github.com/PodgroupConnectivity/asterix.git@384068582c7d5dc28da3fc7fd2dfc3c908f1ff0b#egg=asterix-0.3'
       ],
       scripts=['bin/simplmn'],
 )
