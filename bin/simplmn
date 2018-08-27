@@ -1,0 +1,66 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+# vim: ts=4
+###
+# 
+# Copyright (c) 2018 Pod Group Ltd.
+# Authors : J. Félix Ontañón <felix.ontanon@podgroup.com>
+
+import sys
+import webbrowser
+
+import asterix
+apdu = asterix.APDU
+
+BASE_URL = 'https://plmn-dev.podgroup.com/home?ignoreCache=true'
+
+def verify_pin(card, pin):
+
+    nibbled_pin = ''.join([x[0] + x[1] for x in zip('3' * len(pin), '1947')]).ljust(0x08*2, 'F')
+    response = card.send('0020000108' + nibbled_pin)
+
+def get_plmn(card):
+    # Select GSM ICCID
+    card.send('00A40004023F00')
+    card.send('00A40004027F20')
+    card.send('00A40004026F30')
+    response = apdu.readBinary(card, 0x3C)
+    plmn = apdu.hexlify(response)
+
+    return plmn.upper()
+
+def get_fplmn(card):
+    # Select GSM ICCID
+    card.send('00A40004023F00')
+    card.send('00A40004027F20')
+    card.send('00A40004026F7B')
+    response = apdu.readBinary(card, 0xC)
+    fplmn = apdu.hexlify(response)
+
+    return fplmn.upper()
+
+if __name__ == '__main__':
+    import argparse
+
+    parser = argparse.ArgumentParser(description='Display SIM card PLMN / FPLMN on Pod Group Steering List application')
+    parser.add_argument('pin', type=str, default=None, help='SIM Card PIN. Leave empty for non PIN protected SIM cards')
+    args = parser.parse_args()
+
+    card = asterix.mycard.connectCard()
+
+    if args.pin:
+        verify_pin(card, args.pin)
+
+    plmn = get_plmn(card)
+    fplmn = get_fplmn(card)
+
+    url = BASE_URL
+
+    if plmn.count('F') != len(plmn):
+        url += '&plmn=' + plmn
+
+    if fplmn.count('F') != len(fplmn):
+        url += '&fplmn=' + fplmn
+
+    webbrowser.open_new_tab(url)
+    sys.exit(0)
