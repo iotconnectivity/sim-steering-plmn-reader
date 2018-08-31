@@ -33,11 +33,11 @@ $ simplmn 1234 # Whereas 1234 is your SIM card PIN. Leave it as empty if your SI
 Installation
 -------------
 
-This application uses WINSCARD on Windows Systems or PCSC-Lite for Linux and Mac OSX systems. Ensure the required software and services for your OS are already enabled.
+This application uses WINSCARD on Windows Systems or PCSC-Lite for Linux and Mac OSX systems. Ensure the required software and services for your OS are already enabled. In order to compile in Windows, [Visual C++ Python 2.7 compiler](https://www.microsoft.com/en-us/download/details.aspx?id=44266) needs to be installed as well.
 
 Then, ensure the following dependencies are already installed in your system:
 
-* [Python](http://python.org) 
+* [Python 2.7](http://python.org) 
 * [SWIG](http://www.swig.org)
 * [GIT](https://git-scm.com/)
 
