@@ -12,7 +12,7 @@ import webbrowser
 import asterix
 apdu = asterix.APDU
 
-BASE_URL = 'https://plmn-dev.podgroup.com/home?ignoreCache=true'
+BASE_URL = 'https://mcc-mnc-list.com/home?ignoreCache=true'
 
 def verify_pin(card, pin):
 
